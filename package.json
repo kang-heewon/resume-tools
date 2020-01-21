@@ -1,0 +1,30 @@
+{
+  "name": "resume-tools",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": "https://github.com/kang-heewon/resume-tools",
+  "author": "kang-heewon <itphantom@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "jest": "jest",
+    "tsc": "tsc",
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node ./dist",
+    "prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
+}
