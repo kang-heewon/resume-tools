@@ -11,6 +11,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
       .then(response => {
         const $ = cheerio.load(response.data);
         const graph = $('div.calendar-graph').html();
+        res.set('Content-Type', 'image/svg+xml');
         if (graph) res.send(graph);
         else res.send('');
       })
@@ -81,6 +82,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
     <text text-anchor="start" class="wday" dx="-10" dy="81" style="display: none;">Sat</text>`;
         $('svg g').append(temp);
         const result = $('body').html();
+        res.set('Content-Type', 'image/svg+xml');
         if (result) res.send(result);
         else res.send('');
       })
