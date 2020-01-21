@@ -10,9 +10,14 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
       .get(`http://github.com/users/${req.params.githubId}/contributions`)
       .then(response => {
         const $ = cheerio.load(response.data);
-        const graph = $('div.calendar-graph').html();
+        const graph = $('svg').html();
         res.set('Content-Type', 'image/svg+xml');
-        if (graph) res.send('<?xml version="1.0"?>' + graph);
+        if (graph)
+          res.send(
+            '<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="722" height="112">' +
+              graph.toString() +
+              '</svg>'
+          );
         else res.send('');
       })
       .catch(error => {
@@ -24,7 +29,9 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
       .then(response => {
         const Json = response.data;
         const max = Math.max.apply(null, Object.values(Json));
-        const $ = cheerio.load('<svg width="722" height="112"></svg>');
+        const $ = cheerio.load(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="722" height="112"></svg>'
+        );
         let today = moment(moment().add(-371, 'days'));
         $('svg').append(
           '<g transform="translate(10, 20)" data-hydro-click="{&quot;event_type&quot;:&quot;user_profile.click&quot;,&quot;payload&quot;:{&quot;profile_user_id&quot;:6638675,&quot;target&quot;:&quot;CONTRIBUTION_CALENDAR_SQUARE&quot;,&quot;user_id&quot;:36758131,&quot;client_id&quot;:&quot;21634736.1571236436&quot;,&quot;originating_request_id&quot;:&quot;DEF0:6E1E:4CE142:578263:5E272072&quot;,&quot;originating_url&quot;:&quot;https://github.com/users/ddarkr/contributions?to=2020-01-22&quot;,&quot;referrer&quot;:null}}" data-hydro-click-hmac="9b20ed1347f49cee3d66d9a0343999049ef206f0ff5781738f65c7c75cd777e9">'
@@ -83,7 +90,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
         $('svg g').append(temp);
         const result = $('body').html();
         res.set('Content-Type', 'image/svg+xml');
-        if (result) res.send('<?xml version="1.0"?>' + result);
+        if (result) res.send('<?xml version="1.0"?>' + result.toString());
         else res.send('');
       })
       .catch(error => {
