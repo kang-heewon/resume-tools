@@ -28,6 +28,7 @@ hitsRouter.get('/:id', async (req, res) => {
 `;
   fs.writeFileSync('./logs/' + req.params.id, count + 1, 'utf8');
   res.set('Content-Type', 'image/svg+xml');
+  res.set('Last-Modified', new Date().toUTCString());
   res.set('Cache-Control', 'no-cache');
   res.send(svg);
 });
