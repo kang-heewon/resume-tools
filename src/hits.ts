@@ -6,7 +6,7 @@ const hitsRouter = Router();
 
 hitsRouter.get('/', (req, res) => {
   const name = uuid();
-  fs.writeFileSync('./logs/' + uuid(), '0', 'utf8');
+  fs.writeFileSync('./logs/' + name, '0', 'utf8');
   res.send(name);
 });
 hitsRouter.get('/:id', async (req, res) => {
