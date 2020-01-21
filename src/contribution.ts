@@ -12,6 +12,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
         const $ = cheerio.load(response.data);
         const graph = $('svg').html();
         res.set('Content-Type', 'image/svg+xml');
+        res.set('Cache-Control', 'no-cache');
         if (graph)
           res.send(
             '<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="722" height="112"><style>.month{font-size:10px;fill:#767676}.wday{font-size:9px;fill:#767676}</style>' +
@@ -90,6 +91,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
         $('svg g').append(temp);
         const result = $('body').html();
         res.set('Content-Type', 'image/svg+xml');
+        res.set('Cache-Control', 'no-cache');
         if (result) res.send('<?xml version="1.0"?>' + result.toString());
         else res.send('');
       })
