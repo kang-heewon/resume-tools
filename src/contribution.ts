@@ -14,7 +14,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
         res.set('Content-Type', 'image/svg+xml');
         if (graph)
           res.send(
-            '<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="722" height="112">' +
+            '<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" width="722" height="112"><style>.month{font-size:10px;fill:#767676}.wday{font-size:9px;fill:#767676}</style>' +
               graph.toString() +
               '</svg>'
           );
@@ -30,7 +30,7 @@ contributionRouter.get('/:type/:githubId', (req, res) => {
         const Json = response.data;
         const max = Math.max.apply(null, Object.values(Json));
         const $ = cheerio.load(
-          '<svg xmlns="http://www.w3.org/2000/svg" width="722" height="112"></svg>'
+          '<svg xmlns="http://www.w3.org/2000/svg" width="722" height="112"><style>.month{font-size:10px;fill:#767676}.wday{font-size:9px;fill:#767676}</style></svg>'
         );
         let today = moment(moment().add(-371, 'days'));
         $('svg').append(
