@@ -4,6 +4,7 @@
   <a href="https://github.com/kang-heewon/resume-tools">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
+  <img src="https://tools.heewon.dev/hits/b1ee5ddb-dbf1-4cb8-b12b-2fb66db6e2fa" />
 </p>
 
 ### 🏠 [Homepage](https://tools.heewon.dev)
